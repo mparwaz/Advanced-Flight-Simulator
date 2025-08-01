@@ -1,106 +1,82 @@
-# Advanced-Flight-Simulator
+# Advanced Flight Simulator ✈️
 
-Description
-The Advanced Flight Simulator is a 3D flight simulation experience built with Three.js that runs directly in the browser. This project features:
+A fully-featured 3D flight simulator built with Three.js that delivers realistic aviation experience directly in your browser. Experience authentic flight physics, stunning visuals, and intuitive controls across all devices.
 
-Realistic flight physics with lift, drag, and gravity calculations
+## 🌟 Key Features
 
-Interactive 3D aircraft model with animated control surfaces (ailerons, elevators, rudder, flaps, landing gear)
+### 🛩️ Realistic Flight Physics
+- Physics-based aerodynamics (lift, drag, thrust calculations)
+- Functional control surfaces (ailerons, elevators, rudder)
+- Configurable flap system with performance impact
+- Landing gear with visual deployment/retraction
+- Braking system with progressive force
 
-Procedurally generated world with cities, airports, and countryside
+### 🌍 Dynamic World
+- Procedurally generated infinite terrain
+- Cities with 3D buildings and road networks
+- Functional airports with runways & taxiways
+- Rural areas with natural scenery
+- Chunk-based loading for optimal performance
 
-Dynamic minimap with waypoint navigation system
+### 🌞 Visual Effects
+- Realistic day/night cycle with smooth transitions
+- Dynamic lighting (sun/moon position affects scene)
+- Aircraft lighting system (navigation, strobes, landing)
+- Time-of-day based fog effects
+- Weather-aware skybox rendering
 
-Multiple camera views (cockpit and chase views)
+### 🎮 Intuitive Controls
+- **Desktop**: Keyboard + mouse controls
+- **Mobile**: Virtual joysticks + touch buttons
+- Multiple camera perspectives
+- Control sensitivity customization
 
-Responsive controls for both desktop and mobile devices
+### 📊 Interactive UI
+- Real-time flight data dashboard
+- Dynamic minimap with zoom/pan
+- Waypoint navigation system
+- Collapsible control reference panel
+- Responsive design for all screens
 
-Real-time flight data dashboard
+## 🕹️ Control Systems
 
-Day/night cycle with atmospheric effects
+### Desktop Controls
+| Action                | Control                     |
+|-----------------------|-----------------------------|
+| Throttle              | W (increase), S (decrease)  |
+| Pitch                 | Q (up), E (down)            |
+| Roll/Steer            | A/D                         |
+| Brakes                | Hold B                      |
+| Flaps                 | F                           |
+| Landing Gear          | G                           |
+| Camera Look           | Right Mouse + Drag          |
+| Zoom                  | Mouse Wheel                 |
+| Cockpit View          | C                           |
+| Fullscreen Map        | M                           |
+| Set Waypoint          | Click on Map                |
+| Reset Aircraft        | R                           |
 
-Controls
-Desktop Controls
-Flight Controls:
+### Mobile Controls
+- **Left Joystick**: Pitch/Roll
+- **Right Joystick**: Throttle
+- Touch Buttons: Flaps, Gear, Brakes, View, Map, Reset
 
-W: Accelerate/Increase Thrust
+## 🛠️ Technical Implementation
+- **Rendering**: Three.js WebGL engine
+- **Physics**: Custom flight dynamics model
+- **World Gen**: Seed-based procedural generation
+- **Performance**: Object pooling, chunk loading
+- **UI**: Responsive HTML/CSS with touch support
+- **Effects**: Custom shaders for lighting/weather
 
-S: Decelerate/Reverse Thrust
+## 🚀 Getting Started
+1. Clone repository
+2. Open `index.html` in any modern browser
+3. No installation or dependencies required
 
-A/D: Roll (in air) or Steer (on ground)
+## 📸 Screenshots
+(Add your screenshot links/markdown here)
 
-Q: Pitch Up
+## 📜 License
+MIT Licensed - Free for personal and educational use
 
-E: Pitch Down
-
-Aircraft Systems:
-
-B: Brakes (hold)
-
-F: Toggle Flaps
-
-G: Toggle Landing Gear
-
-R: Reset Aircraft Position
-
-Camera & Navigation:
-
-C: Toggle Cockpit View
-
-Right Mouse Button + Drag: Look Around
-
-Mouse Wheel: Zoom In/Out (chase view only)
-
-M: Toggle Fullscreen Map
-
-Click on Map: Set Waypoint
-
-Mobile Controls
-On-Screen Joysticks:
-
-Left Stick:
-
-Up/Down: Pitch Control
-
-Left/Right: Roll/Yaw Control
-
-Right Stick:
-
-Up/Down: Throttle Control
-
-Buttons:
-
-FLAPS: Toggle Flaps
-
-GEAR: Toggle Landing Gear
-
-BRAKES: Activate Brakes (hold)
-
-VIEW: Toggle Cockpit View
-
-MAP: Toggle Fullscreen Map
-
-CLEAR: Clear Current Waypoint
-
-RESET: Reset Aircraft Position
-
-Technical Features
-Three.js for 3D rendering
-
-Procedural world generation with seed-based randomness
-
-Chunk-based loading system for performance
-
-Physics-based flight model
-
-Responsive design for desktop and mobile
-
-Touch controls optimized for mobile devices
-
-Custom shaders for visual effects
-
-Installation
-Simply open the HTML file in any modern browser. No additional installation required.
-
-License
-This project is open-source and available under the MIT License.
