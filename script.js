@@ -1,1 +1,418 @@
+  /* Base Styles */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            touch-action: none;
+        }
 
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Info Panel */
+        #info-panel {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(26, 26, 46, 0.85);
+            color: #E0E0E0;
+            padding: 12px;
+            border-radius: 12px;
+            z-index: 10;
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            max-width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        #info-panel.collapsed {
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        #info-panel h3 {
+            margin-top: 0;
+            color: #4CAF50;
+            text-shadow: 0 0 8px rgba(76, 175, 80, 0.7);
+            font-size: 1.3em;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        #info-panel.collapsed h3,
+        #info-panel.collapsed p {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        #toggle-info-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 1em;
+            z-index: 11;
+        }
+
+        /* Dashboard */
+        #dashboard {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(26, 26, 46, 0.85);
+            color: #E0E0E0;
+            padding: 20px;
+            border-radius: 12px;
+            z-index: 10;
+            font-size: 15px;
+            line-height: 1.8;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            width: 200px;
+        }
+
+        #dashboard h3 {
+            margin-top: 25;
+            color: #007BFF;
+            text-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+            font-size: 1.3em;
+            border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        #dashboard p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        /* Minimap */
+        #map-container {
+            position: absolute;
+            bottom: 15px;
+            right: 170px;
+            width: 170px;
+            height: 170px;
+            background-color: rgba(26, 26, 46, 0.85);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 20;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #map-container.fullscreen {
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+            cursor: default;
+        }
+
+        #map-canvas, #map-overlay-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #close-map-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 22;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        #map-container.fullscreen #close-map-button {
+            display: block;
+        }
+
+        /* Mobile Controls */
+        .mobile-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .control-stick {
+            width: 140px;
+            height: 140px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            position: relative;
+            pointer-events: auto;
+            touch-action: none;
+            transition: background-color 0.2s;
+        }
+
+        .control-stick.active {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .stick-thumb {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: all 0.2s;
+        }
+
+        .stick-thumb.active {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .control-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .control-button {
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            min-width: 80px;
+            text-align: center;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.2s;
+        }
+
+        .control-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn-flaps {
+            background-color: rgba(40, 167, 69, 0.7);
+        }
+
+        #btn-gear {
+            background-color: rgba(220, 53, 69, 0.7);
+        }
+
+        #btn-brakes {
+            background-color: rgba(255, 193, 7, 0.7);
+            color: #333;
+        }
+
+        #btn-view {
+            background-color: rgba(108, 117, 125, 0.7);
+        }
+
+        #btn-map {
+            background-color: rgba(111, 66, 193, 0.7);
+        }
+
+        .control-button.active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn-brakes.active {
+            background-color: rgba(220, 53, 69, 0.9);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #dashboard {
+                width: 150px;
+                padding: 10px;
+                font-size: 12px;
+                right: 10px;
+                top: 10px;
+            }
+
+            #dashboard h3 {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+            }
+
+            #dashboard p {
+                margin: 5px 0;
+            }
+
+            #info-panel {
+                max-width: 200px;
+                padding: 10px;
+                font-size: 12px;
+                left: 10px;
+                top: 10px;
+            }
+
+            #info-panel.collapsed {
+                width: 40px;
+                height: 40px;
+            }
+
+            #info-panel h3 {
+                font-size: 1.1em;
+            }
+
+            #map-container {
+                width: 150px;
+                height: 150px;
+                right: 10px;
+                bottom: 10px;
+            }
+          
+          #map-container {
+            width: 150px;  /* Good size for tablets */
+            height: 150px;
+            /* This is the fix: Position it next to the right joystick */
+            /* Right joystick is 120px wide + 20px from edge = 140px. Add 10px padding. */
+            right: 150px; 
+            bottom: 10px;
+        }
+        }
+
+        @media (max-width: 480px) {
+            .control-stick {
+                width: 80px;
+                height: 80px;
+            }
+
+            .stick-thumb {
+                width: 30px;
+                height: 30px;
+            }
+
+            .control-buttons {
+                bottom: 10px;
+            }
+
+            .control-button {
+                padding: 8px 12px;
+                min-width: 60px;
+                font-size: 12px;
+            }
+          
+          #map-container {
+            width: 120px;  /* Smaller size for phones */
+            height: 120px;
+            /* Reposition for the smaller phone joystick */
+            /* Right joystick is 80px wide + 20px from edge = 100px. Add 10px padding. */
+            right: 110px;
+            bottom: 10px;
+        }
+        }
+      
+      #dashboard {
+            transition: all 0.3s ease;
+        }
+        #dashboard.collapsed {
+          
+            width: 50px; /* Or whatever size you want when collapsed */
+            height: 50px;
+            padding: 10px;
+            overflow: hidden;
+        }
+        #dashboard.collapsed h3,
+        #dashboard.collapsed p,
+        #dashboard.collapsed #waypoint-hud {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        #toggle-dashboard {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Position opposite of info panel toggle */
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 1em;
+            z-index: 11;
+        }
+        #btn-clear-waypoint {
+            background-color: rgba(255, 152, 0, 0.7); /* Orange color */
+        }
+        
+        #btn-reset {
+            background-color: rgba(220, 53, 69, 0.7); /* Red color, similar to Gear */
+        }
