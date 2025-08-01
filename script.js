@@ -559,7 +559,7 @@
         function toggleFlaps() { flapsExtended = flapsExtended === 0 ? 1 : 0; flapsDisplay.textContent = flapsExtended ? 'EXTENDED' : 'RETRACTED'; }
         function toggleGear() { gearExtended = !gearExtended; gearDisplay.textContent = gearExtended ? 'DOWN' : 'UP'; }
         function toggleMapFullscreen() { mapContainer.classList.toggle('fullscreen'); resizeMapCanvases(); }
-         function toggleView() { isCockpitView = !isCockpitView; if (playerModel) playerModel.visible = !isCockpitView; document.querySelector('.mobile-controls').style.display = isCockpitView ? 'none' : 'flex'; }
+         function toggleView() { isCockpitView = !isCockpitView; if (playerModel) playerModel.visible = !isCockpitView;  }
         function clearWaypoint() { waypoint = null; }
       
               function createSky() { const textureLoader = new THREE.TextureLoader(); const skyTexture = textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/2294472375_24a3b8ef46_o.jpg'); const skyGeometry = new THREE.SphereGeometry(4000, 32, 32); const skyMaterial = new THREE.MeshBasicMaterial({ map: skyTexture, side: THREE.BackSide }); const skybox = new THREE.Mesh(skyGeometry, skyMaterial); scene.add(skybox); scene.onBeforeRender = function() { skybox.position.copy(player.position); } }
